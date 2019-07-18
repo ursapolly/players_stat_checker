@@ -1,3 +1,3 @@
 class PlayerFeature < ApplicationRecord
-  belongs_to :player_match
+  has_many :player_matches
 end

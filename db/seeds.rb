@@ -34,20 +34,19 @@ Match.all.each do |match|
   )
 end
 
-Player.all.each do |player|
-  PlayerMatch.create(
-    player_id: player.id,
-    match: Match.find(rand(1..5))
-  )
-end
 
 feature_list = ['Scored 5 goals', 'Ran 10 km', 'Passed 50% of balls']
 
-PlayerMatch.all.each do |pm|
-  feature_list.each do |item|
-    PlayerFeature.create(
-      title: item,
-      player_match_id: pm.id
-    )
-  end
+feature_list.each do |item|
+  PlayerFeature.create(
+    title: item
+  )
+end
+
+Player.all.each do |player|
+  PlayerMatch.create(
+    player_id: player.id,
+    match: Match.find(rand(1..5)),
+    player_feature: PlayerFeature.find(rand(1..3))
+  )
 end

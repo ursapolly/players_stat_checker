@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_061824) do
+ActiveRecord::Schema.define(version: 2019_07_18_100550) do
 
   create_table "matches", force: :cascade do |t|
     t.string "title"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_061824) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "player_match_id"
-    t.index ["player_match_id"], name: "index_player_features_on_player_match_id"
   end
 
   create_table "player_matches", force: :cascade do |t|
@@ -31,7 +29,9 @@ ActiveRecord::Schema.define(version: 2019_07_18_061824) do
     t.integer "match_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "player_feature_id"
     t.index ["match_id"], name: "index_player_matches_on_match_id"
+    t.index ["player_feature_id"], name: "index_player_matches_on_player_feature_id"
     t.index ["player_id"], name: "index_player_matches_on_player_id"
   end
 
