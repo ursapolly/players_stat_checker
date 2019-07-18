@@ -46,7 +46,55 @@ end
 Player.all.each do |player|
   PlayerMatch.create(
     player_id: player.id,
-    match: Match.find(rand(1..5)),
-    player_feature: PlayerFeature.find(rand(1..3))
+    match: Match.find(rand(1..5))
+  )
+end
+
+#  Данные для проверки метода, который выводит топ-5 по конкретному показателю
+10.times do
+  PlayerMatch.create(
+    player_id: 2,
+    match_id: 2,
+    player_feature_id: 1
+  )
+end
+
+5.times do
+  PlayerMatch.create(
+    player_id: 3,
+    match_id: 2,
+    player_feature_id: 1
+  )
+end
+
+4.times do
+  PlayerMatch.create(
+    player_id: 4,
+    match_id: 2,
+    player_feature_id: 1
+  )
+end
+
+3.times do
+  PlayerMatch.create(
+    player_id: 5,
+    match_id: 2,
+    player_feature_id: 1
+  )
+end
+
+2.times do
+  PlayerMatch.create(
+    player_id: 7,
+    match_id: 2,
+    player_feature_id: 1
+  )
+end
+
+8.times do
+  PlayerMatch.create(
+    player_id: 8,
+    match_id: 2,
+    player_feature_id: 1
   )
 end
