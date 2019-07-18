@@ -1,24 +1,69 @@
-# README
+# Консольное Rails-приложение для поиска лучших игроков по конкретным показателям
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Функции:
 
-Things you may want to cover:
+- Добавить игроку какой-либо показатель («Забил 5 голов», «Пробежал 10 км» и так далее)
 
-* Ruby version
+- Проверить, выполнил ли игрок конкретный показатель за предыдущие 5 матчей
 
-* System dependencies
+- Найти топ-5 игроков по конкретному показателю среди команды или всех игроков
 
-* Configuration
+# Запуск
 
-* Database creation
+Установить Bundler, если нет. Установить нужные гемы:
 
-* Database initialization
+```sh
+gem install bundler
+bundle install
+```
 
-* How to run the test suite
+Прогнать миграцию:
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+bundle exec rake db:migrate
+```
 
-* Deployment instructions
+Заполнить БД тестовыми данными:
 
-* ...
+```sh
+bundle exec rake db:seed
+```
+
+# Как пользоваться
+
+Запустить Rails Console:
+
+```sh
+bundle exec rails console
+```
+
+_Чтобы присвоить игроку достижение:_
+
+```sh
+PlayerFeature.first.add_feature_to_player(1, 2)
+```
+
+В БД есть по умолчанию три показателя, поэтому вместо `first` можно писать `find(<id>)`. Параметры метода: первый — `id` нужного юзера, второй — `id` матча.
+
+_Чтобы проверить, выполнил ли игрок конкретный показатель за предыдущие 5 матчей_
+
+```sh
+Player.find(3).reached_feature?(feature)
+=> true
+```
+
+Игрока тоже можно искать любого по айдишнику, параметр метода — полностью какой-либо экземпляр класса `PlayerFeature`.
+
+_Чтобы найти топ-5 игроков по конкретному показателю среди всех игроков_
+
+```sh
+Player.select_top_five(feature)
+```
+
+_или среди команды_
+
+```sh
+Team.find(2).select_top_five(feature)
+```
+
+Параметр метода — экземпляр класса `PlayerFeature`.
