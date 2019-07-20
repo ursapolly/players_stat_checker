@@ -40,7 +40,7 @@ bundle exec rails console
 _Чтобы присвоить игроку достижение:_
 
 ```sh
-PlayerFeature.first.add_feature_to_player(1, 2)
+Player.first.add_feature(1, 2)
 ```
 
 В БД есть по умолчанию три показателя, поэтому вместо `first` можно писать `find(<id>)`. Параметры метода: первый — `id` нужного юзера, второй — `id` матча.
@@ -54,16 +54,16 @@ Player.find(3).reached_feature?(feature)
 
 Игрока тоже можно искать любого по айдишнику, параметр метода — полностью какой-либо экземпляр класса `PlayerFeature`.
 
-_Чтобы найти топ-5 игроков по конкретному показателю среди всех игроков_
+_Чтобы найти топ-n игроков по конкретному показателю среди всех игроков_
 
 ```sh
-Player.select_top_five(feature)
+Player.select_top(feature, limit)
 ```
 
 _или среди команды_
 
 ```sh
-Team.find(2).select_top_five(feature)
+Team.find(2).select_top(feature, limit)
 ```
 
-Параметр метода — экземпляр класса `PlayerFeature`.
+Параметы метода — экземпляр класса `PlayerFeature` и `limit` (сколько игроков вывести).
